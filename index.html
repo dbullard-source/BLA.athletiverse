@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big League Advantage x Athletiverse | 12-Month Partnership</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bla-red: #CE1126;
+            --bla-black: #000000;
+            --bla-dark: #0a0a0a;
+            --bla-gray: #1a1a1a;
+            --bg-body: #050505;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --accent-glow: rgba(206, 17, 38, 0.3);
+            --success: #10b981;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-body);
+            background-image: radial-gradient(circle at 50% 0%, rgba(206, 17, 38, 0.15), transparent 60%),
+                              radial-gradient(circle at 90% 90%, rgba(206, 17, 38, 0.05), transparent 40%);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding-bottom: 80px; }
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+        .header-left { display: flex; align-items: center; gap: 25px; }
+        .partner-logo { height: 60px; width: auto; object-fit: contain; filter: brightness(1.1); }
+        .header-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.2); }
+        .brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; color: #fff; text-transform: uppercase; }
+        .header-right { text-align: right; }
+        .doc-badge {
+            display: inline-block;
+            background: var(--bla-red);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        .meta-date { font-size: 0.85rem; color: var(--text-muted); }
+        .os-banner {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.5) 100%);
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--bla-red);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+        .os-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; line-height: 1.1; color: #fff; }
+        .os-text { font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin-bottom: 0; }
+        .relationship-note {
+            background: rgba(206, 17, 38, 0.08);
+            border: 1px solid rgba(206, 17, 38, 0.2);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+        
+        /* ROI Section */
+        .roi-section {
+            background: linear-gradient(180deg, #0d0d0d 0%, #000 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 60px 50px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .roi-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .roi-header { text-align: center; position: relative; z-index: 1; }
+        .roi-header h3 { font-size: 2rem; margin-bottom: 10px; color: #fff; font-weight: 800; }
+        .roi-header p { color: var(--text-muted); margin-bottom: 50px; font-size: 1rem; }
+        
+        .chart-wrapper {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .chart-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .bar-container {
+            width: 120px;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+        }
+        .bar-fill {
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        .bar-fill.cost {
+            height: 120px;
+            background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+        }
+        .bar-fill.value {
+            height: 280px;
+            background: linear-gradient(180deg, #34d399 0%, #10b981 50%, #059669 100%);
+            box-shadow: 0 -20px 60px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.15);
+            position: relative;
+        }
+        .bar-fill.value::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+            border-radius: 12px 12px 0 0;
+        }
+        .bar-value {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.6rem;
+            font-weight: 800;
+            white-space: nowrap;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .bar-value.green { color: var(--success); }
+        .bar-value.gray { color: #9ca3af; }
+        .bar-label {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .roi-multiplier {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--bla-red) 0%, #a00d1e 100%);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            box-shadow: 0 10px 40px rgba(206, 17, 38, 0.4);
+            z-index: 2;
+        }
+        .roi-context {
+            margin-top: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .roi-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #fff;
+        }
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 25px;
+            background: var(--bla-red);
+            display: block;
+            border-radius: 3px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        .service-card {
+            background: var(--bla-dark);
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 16px;
+            transition: transform 0.2s;
+        }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--bla-red); }
+        .icon-box {
+            width: 45px; height: 45px;
+            background: var(--bla-red);
+            color: #fff;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .service-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 15px; }
+        .task-list { list-style: none; }
+        .task-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .task-list li strong { color: #fff; }
+        .task-list li::before {
+            content: '•';
+            position: absolute; left: 0; top: 0px;
+            color: var(--bla-red);
+            font-weight: 800;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .pricing-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .pricing-card {
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card.featured {
+            border: 1px solid var(--bla-red);
+            background: linear-gradient(180deg, rgba(206, 17, 38, 0.1) 0%, #000 100%);
+            box-shadow: 0 0 30px rgba(206, 17, 38, 0.1);
+        }
+        .pricing-header {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .p-title { font-size: 1.3rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .p-sub { color: var(--text-muted); font-size: 0.9rem; }
+        .price-display { margin-bottom: 25px; }
+        .big-price { font-size: 3rem; font-weight: 800; color: #fff; line-height: 1; }
+        .period { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        .savings-badge {
+            display: inline-block;
+            background: var(--bla-red);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .term-list { margin-top: auto; }
+        .term-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .term-item.highlight { color: #fff; font-weight: 600; }
+        .strike { text-decoration: line-through; color: #666; margin-right: 8px; }
+        
+        /* Bonus Section - Professional Style */
+        .bonus-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(0,0,0,0.8) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+        .bonus-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .bonus-title-group h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .bonus-title-group p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .bonus-value-tag {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-align: right;
+        }
+        .bonus-value-tag .label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .bonus-value-tag .value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+        .bonus-details {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .bonus-details strong { color: #fff; }
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .bonus-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .bonus-item-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .bonus-item-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .bonus-item-value .strike {
+            text-decoration: line-through;
+            color: #555;
+            font-size: 0.9rem;
+            margin-right: 6px;
+        }
+        .bonus-item-value.highlight {
+            color: var(--success);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        @media (max-width: 900px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .pricing-section { grid-template-columns: 1fr; }
+            .main-header { flex-direction: column; gap: 20px; text-align: center; }
+            .chart-wrapper { flex-direction: row; gap: 40px; }
+            .bonus-grid { grid-template-columns: 1fr 1fr; }
+            .bonus-header { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="main-header">
+        <div class="header-left">
+            <img src="https://static.wixstatic.com/media/3201ff_2e7be0fcea9d4cff9dc852e9a9a20216~mv2.png/v1/fill/w_430,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/BLA_Logo-white.png" alt="Big League Advantage" class="partner-logo">
+            <div class="header-divider"></div>
+            <div class="brand-name">Athletiverse <span style="font-weight:300; color:var(--text-muted);">Partnership</span></div>
+        </div>
+        <div class="header-right">
+            <span class="doc-badge">Strategic Proposal</span>
+            <div style="font-weight: 700; font-size: 1.1rem; margin: 4px 0; color:#fff;">Player-First Storytelling</div>
+            <div class="meta-date">12-Month Scope • 2026</div>
+        </div>
+    </header>
+
+    <div class="os-banner">
+        <h1 class="os-title">Controlling the Narrative.</h1>
+        <p class="os-text">
+            A 12-month strategic content and analytics roadmap designed to strengthen athlete relationships, provide educational resources, and control the Big League Advantage narrative through 2026.
+        </p>
+        <div class="relationship-note">
+            <strong>Athletiverse is pleased to continue our long-standing partnership with Big League Advantage.</strong> Over the past 9 months, we have delivered $130K+ in earned media value together. This proposal outlines how we will build on that foundation to drive even greater results in the year ahead.
+        </div>
+    </div>
+
+    <div class="roi-section">
+        <div class="roi-header">
+            <h3>Projected Monthly Return</h3>
+            <p>Based on historical performance of $130K EMV delivered over the last 9 months (~$14.4K/mo).</p>
+        </div>
+        <div class="chart-wrapper">
+            <div class="chart-bar">
+                <div class="bar-container">
+                    <div class="bar-fill cost">
+                        <div class="bar-value gray">$6,250</div>
+                    </div>
+                </div>
+                <div class="bar-label">Monthly<br>Investment</div>
+            </div>
+            <div class="roi-multiplier">2.3X ROI</div>
+            <div class="chart-bar">
+                <div class="bar-container">
+                    <div class="bar-fill value">
+                        <div class="bar-value green">$14,400+</div>
+                    </div>
+                </div>
+                <div class="bar-label">Delivered<br>Media Value</div>
+            </div>
+        </div>
+        <div class="roi-context">
+            <div class="roi-badge">
+                <span>Every $1 invested yields approximately $2.30 in verified media value</span>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">2026 Scope of Services</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon-box">01</div>
+            <h3 class="service-title">The Content Engine</h3>
+            <ul class="task-list">
+                <li><strong>10 Weekly Player Highlights:</strong> Curated success stories from your roster of "postable" and approved athletes.</li>
+                <li><strong>3 Instagram Carousels / Week:</strong>
+                    <br><span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:5px; padding-left:15px;">(1) Exclusive Player Journey/Story<br>(2) Educational Resources (High performer)</span>
+                </li>
+                <li><strong>1 Monthly Newsletter:</strong> Deep dive into a specific player's journey and how BLA helped them on/off the field.</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box">02</div>
+            <h3 class="service-title">Brand & Web Management</h3>
+            <ul class="task-list">
+                <li><strong>Website Updates:</strong> Up to 4 requests monthly for marketing collateral updates (72-hour turnaround).</li>
+                <li><strong>Blog Integration:</strong> All monthly newsletters will be formatted and added as permanent SEO-rich blog posts to the BLA site.</li>
+                <li><strong>Narrative Control:</strong> Focus on player testimonials to counter external noise and strengthen athlete relations.</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box">03</div>
+            <h3 class="service-title">Intelligence & Analytics</h3>
+            <ul class="task-list">
+                <li><strong>AVI Platform Subscription:</strong> Full access to the Athletiverse Valuation Intelligence dashboard (Complimentary).</li>
+                <li><strong>Google Analytics Monitoring:</strong> Armed specifically to catch and report any digital references to "Big League Advantage."</li>
+                <li><strong>ROI Reporting:</strong> Tracking toward a 2-3X return on EMV/Spend for 2026.</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box">04</div>
+            <h3 class="service-title">Executive Reporting</h3>
+            <ul class="task-list">
+                <li><strong>Monthly Marketing Reports:</strong> Comprehensive executive summaries delivered each month detailing value generated across all social channels.</li>
+                <li><strong>Performance Dashboards:</strong> Clear visualization of content performance, audience growth, and sponsorship attribution.</li>
+                <li><strong>Strategic Recommendations:</strong> Data-backed insights for optimizing content strategy and maximizing ROI.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-title">Partnership Options</h2>
+    <div class="pricing-section">
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <div class="p-title">Flexible Monthly</div>
+                <div class="p-sub">Standard Retainer</div>
+            </div>
+            <div class="price-display">
+                <div class="big-price">$6,250<span class="period">/mo</span></div>
+            </div>
+            <div class="term-list">
+                <div class="term-item">
+                    <span>Software Fee</span>
+                    <span><span class="strike">$2,500</span> Included</span>
+                </div>
+                <div class="term-item">
+                    <span>Valuation Reports</span>
+                    <span><span class="strike">$3,500</span> 7 FREE/mo</span>
+                </div>
+                <div class="term-item">
+                    <span>Monthly Executive Reports</span>
+                    <span style="color:#fff;">Included</span>
+                </div>
+                <div class="term-item">
+                    <span>Cancellation Notice</span>
+                    <span style="color:#fff;">60 Days Required</span>
+                </div>
+                <div class="term-item highlight">
+                    <span>Total Annual Value</span>
+                    <span>$75,000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pricing-card featured">
+            <div style="position:absolute; top:0; right:0; background:var(--bla-red); color:white; padding:5px 15px; font-weight:800; font-size:0.8rem; border-bottom-left-radius:12px; border-top-right-radius:12px;">RECOMMENDED</div>
+            <div class="pricing-header">
+                <div class="p-title">Annual Partner</div>
+                <div class="p-sub">Upfront Payment</div>
+            </div>
+            <div class="savings-badge">SAVE 15%</div>
+            <div class="price-display">
+                <div class="big-price">$5,312<span class="period">/mo</span></div>
+                <span style="font-size:0.8rem; color:var(--text-muted);">(Effective Monthly Rate)</span>
+            </div>
+            <div class="term-list">
+                <div class="term-item">
+                    <span>Software Fee</span>
+                    <span><span class="strike">$2,500</span> Included</span>
+                </div>
+                <div class="term-item">
+                    <span>Valuation Reports</span>
+                    <span><span class="strike">$3,500</span> 7 FREE/mo</span>
+                </div>
+                <div class="term-item">
+                    <span>Monthly Executive Reports</span>
+                    <span style="color:#fff;">Included</span>
+                </div>
+                <div class="term-item">
+                    <span>Billed Annually</span>
+                    <span style="color:#fff;">$63,750</span>
+                </div>
+                <div class="term-item highlight" style="color:var(--bla-red);">
+                    <span>Total Savings</span>
+                    <span>$53,250</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bonus Section - After Pricing -->
+    <div class="bonus-section">
+        <div class="bonus-header">
+            <div class="bonus-title-group">
+                <h3>Partnership Bonus: Custom Valuation Reports</h3>
+                <p>Included with both partnership tiers at no additional cost</p>
+            </div>
+            <div class="bonus-value-tag">
+                <div class="label">Annual Value</div>
+                <div class="value">$42,000</div>
+            </div>
+        </div>
+        <p class="bonus-details">
+            As part of this partnership, Big League Advantage will receive <strong>up to 7 custom marketing valuation reports and projections monthly</strong>—delivered by our analytics team to support athlete relations, prospect conversations, and internal strategy sessions. These reports provide actionable insights into athlete EMV, brand fit analysis, and growth projections.
+        </p>
+        <div class="bonus-grid">
+            <div class="bonus-item">
+                <div class="bonus-item-title">Reports Per Month</div>
+                <div class="bonus-item-value">7</div>
+            </div>
+            <div class="bonus-item">
+                <div class="bonus-item-title">Per Report Value</div>
+                <div class="bonus-item-value"><span class="strike">$500</span> Included</div>
+            </div>
+            <div class="bonus-item">
+                <div class="bonus-item-title">Monthly Savings</div>
+                <div class="bonus-item-value highlight">$3,500</div>
+            </div>
+            <div class="bonus-item">
+                <div class="bonus-item-title">Report Types</div>
+                <div class="bonus-item-value" style="font-size: 0.85rem;">Athlete EMV, Brand Fit, Projections</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div style="font-weight:800; font-size:1.2rem; color:#fff; margin-bottom:10px;">ATHLETIVERSE</div>
+        <p>Confidential Proposal prepared for Big League Advantage</p>
+        <p>© 2026 Athletiverse. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>
